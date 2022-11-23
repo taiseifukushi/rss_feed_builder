@@ -24,6 +24,7 @@ docker compose run app sh run.sh
 - https://style.potepan.com/articles/29566.html
 - https://docs.ruby-lang.org/ja/latest/class/REXML=3a=3aDocument.html
 - https://miner.hatenablog.com/entry/2017/07/20/142532
+https://rooter.jp/web-crawling/nokogiri-method-attr/
 - xxx
 
 
