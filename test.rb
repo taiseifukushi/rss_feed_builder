@@ -1,7 +1,7 @@
 # docker compose run app ruby test.rb
 
 ## Todo
-# - [ ] 定期実行 1/h  
+# - [ ] 定期実行 1/h
 # - [ ] 対象のページからdom取得
 # - [ ] xml生成
 # - [ ] 生成したxmlをもとにrss feedを作成
@@ -10,11 +10,11 @@
 # =======
 puts "start"
 
-require 'dotenv'
+require "dotenv"
 Dotenv.load
-require 'nokogiri' # https://github.com/sparklemotion/nokogiri#parsing-and-querying
-require 'open-uri'
-require 'pry'
+require "nokogiri" # https://github.com/sparklemotion/nokogiri#parsing-and-querying
+require "open-uri"
+require "pry"
 require "rss"
 
 target_url = ENV["TARGET_URL"]
@@ -34,16 +34,15 @@ end
 
 # write_file(tmp_file_path, doc)
 
-#main-column > div.top-section.clearfix > div.right-section > div.top-news > ul.article-list
+# main-column > div.top-section.clearfix > div.right-section > div.top-news > ul.article-list
 # //*[@id="main-column"]/div[1]/div[2]/div[4]/ul[1]
 
 x_path = '//*[@id="main-column"]/div[1]/div[2]/div[4]/ul[1]'
 
-a = doc.at_css('ul.article-list')
+a = doc.at_css("ul.article-list")
 b = doc.xpath(x_path)
 # write_file(tmp_file_path2, a)
 # write_file(tmp_file_path3, b)
-
 
 c = doc.xpath('//*[@id="main-column"]/div[1]/div[2]/div[4]/ul[1]/li')
 # [8] pry(main)> nodes.count
@@ -69,9 +68,9 @@ parsed_nodes = nodes.map do |node|
   # node.children[1].children でeachで検索する?
   # 最低限URLがあればよさそうだけど
   path = node.children[1].attribute("href").value # path以外Nokogiri::XML::Elementの位置が異なる
-  # hash[:title] = 
+  # hash[:title] =
   hash[:path] = path
-  # hash[:time]  = 
+  # hash[:time]  =
   hash
 end
 
@@ -96,24 +95,24 @@ def xml_builder
     maker.channel.title = "Example"
     maker.channel.description = "Example Site"
     maker.channel.link = "http://example.com/"
-    
+
     maker.items.do_sort = true
-    
+
     maker.items.new_item do |item|
       item.link = "http://example.com/article.html"
       item.title = "Sample Article"
       item.date = Time.parse("2004/11/1 10:10")
     end
-    
+
     maker.items.new_item do |item|
       item.link = "http://example.com/article2.html"
       item.title = "Sample Article2"
       item.date = Time.parse("2004/11/2 10:10")
     end
-    
+
     maker.image.title = "Example Site"
     maker.image.url = "http://example.com/logo.png"
-    
+
     maker.textinput.title = "Search Example Site"
     maker.textinput.description = "Search Example Site's all text"
     maker.textinput.name = "keyword"
@@ -156,7 +155,7 @@ def xml_atom_builder
     maker.textinput.name = "keyword"
   end
 end
-  
+
 # p xml_builder
 # p xml_builder.class # RSS::Rss
 # write_file(tmp_file_path6, xml_builder)

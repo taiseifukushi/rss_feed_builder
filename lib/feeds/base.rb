@@ -1,15 +1,36 @@
 module Feeds
   class Base
+    require "rss"
+    require "pry"
 
-    def initialize(updated_xml)
-      @time = Time.zone.now
-      @updated_xml = updated_xml
+    Dotenv.load
+
+    attr_reader :current_time
+    attr_reader :feed_item
+
+    def initialize(feed_item)
+      @current_time = Time.zone.now
+      @feed_item    = feed_item
     end
 
     def call
-      reise NotImplementedError 
+      raise NotImplementedError
     end
 
-    private
+    def url
+      raise NotImplementedError
+    end
+
+    def title
+      raise NotImplementedError
+    end
+    
+    def description
+      raise NotImplementedError
+    end
+
+    def items
+      raise NotImplementedError
+    end
   end
 end

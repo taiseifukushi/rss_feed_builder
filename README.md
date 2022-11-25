@@ -2,7 +2,7 @@
 
 ```sh
 docker compose build
-docker compose run app sh run.sh
+docker compose run app bash run.sh
 ```
 
 ## memo
