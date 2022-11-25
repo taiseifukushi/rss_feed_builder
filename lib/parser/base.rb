@@ -1,5 +1,6 @@
 module Parser
   class Base
+    require "dotenv"
     require "nokogiri" # https://github.com/sparklemotion/nokogiri#parsing-and-querying
     require "open-uri"
     require "dotenv"
@@ -10,8 +11,8 @@ module Parser
     def call
       raise NotImplementedError
     end
-    
-    def url
+
+    def target_url
       raise NotImplementedError
     end
   end

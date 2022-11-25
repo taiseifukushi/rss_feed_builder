@@ -1,19 +1,20 @@
+require_relative "./base"
+
 module Parser
   class Parser < Base
-
     def call
       nodes = get_nodes(target_url)
       extract_nodes(nodes)
     end
 
-    def url
+    def target_url
       ENV["URL"]
     end
 
     private
 
-    def get_nodes(target_url)
-      Nokogiri::HTML(URI.open(target_url))
+    def get_nodes(url)
+      Nokogiri::HTML(URI.open(url))
     end
 
     def parsed_nodes(nodes)
@@ -24,6 +25,7 @@ module Parser
     # @return [Array] xmlとして出力したい要素を格納
     def extract_nodes(nodes)
       parsed_nodes(nodes).map do |node|
+        binding.pry
         hash = {}
         path = node.children[1].attribute("href").value
         hash[:path] = path

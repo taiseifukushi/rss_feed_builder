@@ -1,12 +1,12 @@
 module Feeds
   class Base
+    require "dotenv"
     require "rss"
     require "pry"
 
     Dotenv.load
 
-    attr_reader :current_time
-    attr_reader :feed_item
+    attr_reader :current_time, :feed_item
 
     def initialize(feed_item)
       @current_time = Time.zone.now
@@ -24,7 +24,7 @@ module Feeds
     def title
       raise NotImplementedError
     end
-    
+
     def description
       raise NotImplementedError
     end

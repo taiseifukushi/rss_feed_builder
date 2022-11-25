@@ -1,3 +1,3 @@
-require_relative "../../lib/message_text"
+require_relative "./publish"
 
 p Publish.new.call
