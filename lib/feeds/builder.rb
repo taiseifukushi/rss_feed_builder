@@ -35,8 +35,9 @@ module Feeds
         maker.items.do_sort       = true
 
         items_for_feed.each_with_index do |_item, index|
+          binding.pry
           maker.items.new_item do |item|
-            item.link  = _item
+            item.link  = "#{ENV["BASE_URL"]}#{_item}"
             item.title = "News #{index + 1}" # 本当はタイトルを取得したいけど難しかったので現時点では適当
             item.date  = current_time # 本当は更新時刻を取得したいけど難しかったので現時点では適当
           end
