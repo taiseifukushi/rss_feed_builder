@@ -18,23 +18,25 @@ module Parser
     end
 
     def parsed_nodes(nodes)
+      # binding.pry
       nodes.xpath(x_path)
     end
-
+    
     # @param nodes [String] nodes
     # @return [Array] xmlとして出力したい要素を格納
     def extract_nodes(nodes)
+      # binding.pry
       parsed_nodes(nodes).map do |node|
-        binding.pry
         hash = {}
-        path = node.children[1].attribute("href").value
+        path = node.children[1].children[1].attribute("href").value
         hash[:path] = path
         hash
       end
     end
 
     def x_path
-      '//*[@id="main-column"]/div[1]/div[2]/div[4]/ul[1]'
+      # '//*[@id="main-column"]/div[1]/div[2]/div[4]/ul[1]'
+      '//*[@id="article-category-list"]/ul'
     end
   end
 end
