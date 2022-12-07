@@ -34,12 +34,13 @@ module Feeds
         maker.channel.link        = url
         maker.items.do_sort       = true
 
-        items_for_feed.each_with_index do |_item, index|
-          binding.pry
+        items_for_feed.each_with_index do |_item, _index|
+          next if _item.nil?
+
           maker.items.new_item do |item|
-            item.link  = "#{ENV["BASE_URL"]}#{_item}"
-            item.title = "News #{index + 1}" # 本当はタイトルを取得したいけど難しかったので現時点では適当
-            item.date  = current_time # 本当は更新時刻を取得したいけど難しかったので現時点では適当
+            item.link  = _item[:path] != "failed to extract path." ? "#{ENV['BASE_URL']}#{_item[:path]}" : "failed to extract path."
+            item.title = _item[:title]
+            item.date  = _item[:date]
           end
         end
       end

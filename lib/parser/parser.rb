@@ -20,37 +20,38 @@ module Parser
     def parsed_nodes(nodes)
       nodes.xpath(x_path)
     end
-    
+
     # @param nodes [Nokogiri::HTML4::Document] nodes
     # @return [Array] xmlとして出力したい要素を格納
     def extract_nodes(nodes)
       nokogiri_node_sets = parsed_nodes(nodes)[0].children
-      hash = {}
 
-      nokogiri_node_sets.map.with_index do |node_set, i|
-        next if node_set.class == Nokogiri::XML::Text
+      nokogiri_node_sets.each_with_object([]) do |node_set, _array|
+        index = _array.count
+        next if node_set.instance_of?(Nokogiri::XML::Text)
 
-        hash[:path]  = extract_title(node_set.children[i])
-        hash[:title] = extract_title(node_set.children[i])
-        hash[:date]  = extract_date(node_set.children[i])
-        hash
+        hash = {}
+        hash[:path]  = extract_path(node_set)
+        hash[:title] = extract_title(node_set)
+        hash[:date]  = extract_date(node_set)
+        _array << hash
       end
     end
 
     def extract_path(element)
-      element.attribute("href").value
+      element.children[1].attribute("href").value
     rescue StandardError
-      "failed to extract paths."
+      "failed to extract path."
     end
-    
+
     def extract_title(element)
-      element.children[1].children[1].children[1].children[3].children[0]
+      element.children[1].children[1].children[3].children[0]
     rescue StandardError
       "failed to extract title."
     end
-    
+
     def extract_date(element)
-      element.children[1].children[1].children[1].children[5].children[0]
+      element.children[1].children[1].children[5].children[0]
     rescue StandardError
       "failed to extract date."
     end

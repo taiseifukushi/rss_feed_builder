@@ -11,7 +11,7 @@ module Feeds
     def initialize(parsed_items)
       utc_time      = Time.now
       @current_time = utc_time.localtime("+09:00")
-      @parsed_items    = parsed_items
+      @parsed_items = parsed_items
     end
 
     def call
