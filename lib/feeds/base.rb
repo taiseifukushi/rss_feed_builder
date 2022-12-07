@@ -6,11 +6,12 @@ module Feeds
 
     Dotenv.load
 
-    attr_reader :current_time, :feed_item
+    attr_reader :current_time, :parsed_items
 
-    def initialize(feed_item)
-      @current_time = Time.zone.now
-      @feed_item    = feed_item
+    def initialize(parsed_items)
+      utc_time      = Time.now
+      @current_time = utc_time.localtime("+09:00")
+      @parsed_items = parsed_items
     end
 
     def call
@@ -29,7 +30,7 @@ module Feeds
       raise NotImplementedError
     end
 
-    def items
+    def feed_items
       raise NotImplementedError
     end
   end
