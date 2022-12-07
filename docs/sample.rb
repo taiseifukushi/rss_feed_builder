@@ -1,4 +1,4 @@
-# docker compose run app ruby test.rb
+# docker compose exec app ruby test.rb
 
 ## Todo
 # - [ ] 定期実行 1/h

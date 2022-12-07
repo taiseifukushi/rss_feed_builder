@@ -27,7 +27,6 @@ module Parser
       nokogiri_node_sets = parsed_nodes(nodes)[0].children
 
       nokogiri_node_sets.each_with_object([]) do |node_set, _array|
-        index = _array.count
         next if node_set.instance_of?(Nokogiri::XML::Text)
 
         hash = {}
