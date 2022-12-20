@@ -8,7 +8,7 @@ class Publish
 
   def initialize
     @build_feed_file_path = BUILT_FEED_FILE_PATH
-    # @buiit_feed           = build_xml
+    @buiit_feed           = build_xml
   end
 
   def execute
