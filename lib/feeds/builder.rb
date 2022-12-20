@@ -43,6 +43,8 @@ module Feeds
             item.title = _item[:title]
           end
         end
+      rescue StandardError => e
+        puts "failed to build xml. (error: #{e})"
       end
     end
   end

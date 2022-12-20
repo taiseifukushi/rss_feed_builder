@@ -1,3 +1,4 @@
 #!bin/sh
 
-docker compose exec app ruby lib/main.rb
+cd lib
+docker compose exec app ruby main.rb
