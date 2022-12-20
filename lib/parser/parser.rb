@@ -31,8 +31,8 @@ module Parser
 
         hash = {}
         hash[:path]  = extract_path(node_set)
-        hash[:title] = extract_title(node_set)
         hash[:date]  = extract_date(node_set)
+        hash[:title] = extract_title(node_set)
         _array << hash
       end
     end
@@ -42,17 +42,17 @@ module Parser
     rescue StandardError
       "failed to extract path."
     end
-
-    def extract_title(element)
+    
+    def extract_date(element)
       element.children[1].children[1].children[3].children[0].text
     rescue StandardError
-      "failed to extract title."
+      "failed to extract date."
     end
-
-    def extract_date(element)
+    
+    def extract_title(element)
       element.children[1].children[1].children[5].children[0].text
     rescue StandardError
-      "failed to extract date."
+      "failed to extract title."
     end
 
     def x_path
