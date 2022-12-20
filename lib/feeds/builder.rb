@@ -39,8 +39,8 @@ module Feeds
 
           maker.items.new_item do |item|
             item.link  = _item[:path] != "failed to extract path." ? "#{ENV['BASE_URL']}#{_item[:path]}" : "failed to extract path."
-            item.title = _item[:title]
             item.date  = _item[:date]
+            item.title = _item[:title]
           end
         end
       end
