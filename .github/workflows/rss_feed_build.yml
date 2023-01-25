@@ -1,0 +1,31 @@
+name: rss_feed_build
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  rss_feed_build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: run rss_feed_build
+      run: |
+        sudo docker-compose build
+        sudo docker-compose up -d
+        sudo docker-compose exec app ruby lib/main.rb
+        - >
+    - name: run rss_feed_build
+      run: |
+        apt update
+        apt install git -y
+        if [ `git status -z | wc -c` -gt 0 ]; then
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "[rss_feed_build]"`date +%Y%m%d%H%M%S`
+          git push origin main
+        else
+          echo "not changed"
+        fi

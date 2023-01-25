@@ -27,8 +27,5 @@ RUN mkdir /app
 WORKDIR /app
 COPY Gemfile /app
 COPY Gemfile.lock /app
-# RUN bundle install --path vendor/bundle # Todo: これだと.envファイルをロードできないなぜ?調べる
 RUN bundle install
 COPY . /app
-
-# CMD ["bundle", "exec", "ruby", "./test.rb"]

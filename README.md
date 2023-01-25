@@ -2,5 +2,5 @@
 
 ```sh
 docker compose build
-docker compose exec app bash run.sh
+docker compose exec app lib/main.rb
 ```
