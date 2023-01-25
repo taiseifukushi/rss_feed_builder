@@ -43,13 +43,13 @@ module Parser
       "[#{self.class}] failed to extract path: #{e}"
     end
     
-    def extract_date(element)
+    def extract_title(element)
       element.children[1].children[1].children[3].children[0].text
     rescue StandardError => e
       "[#{self.class}] failed to extract date: #{e}"
     end
     
-    def extract_title(element)
+    def extract_date(element)
       element.children[1].children[1].children[5].children[0].text
     rescue StandardError => e
       "[#{self.class}] failed to extract title: #{e}"
