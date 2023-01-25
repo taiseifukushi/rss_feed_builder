@@ -44,7 +44,7 @@ module Feeds
           end
         end
       rescue StandardError => e
-        puts "failed to build xml. (error: #{e})"
+        puts "[#{self.class}] failed to build xml: #{e}"
       end
     end
   end

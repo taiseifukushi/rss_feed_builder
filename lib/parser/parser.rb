@@ -39,20 +39,20 @@ module Parser
 
     def extract_path(element)
       element.children[1].attribute("href").value
-    rescue StandardError
-      "failed to extract path."
+    rescue StandardError => e
+      "[#{self.class}] failed to extract path: #{e}"
     end
     
     def extract_date(element)
       element.children[1].children[1].children[3].children[0].text
-    rescue StandardError
-      "failed to extract date."
+    rescue StandardError => e
+      "[#{self.class}] failed to extract date: #{e}"
     end
     
     def extract_title(element)
       element.children[1].children[1].children[5].children[0].text
-    rescue StandardError
-      "failed to extract title."
+    rescue StandardError => e
+      "[#{self.class}] failed to extract title: #{e}"
     end
 
     def x_path
