@@ -14,7 +14,7 @@ jobs:
       run: |
         sudo docker-compose build
         sudo docker-compose up -d
-        sudo docker-compose exec app ruby lib/main.rb
+        sudo docker-compose exec -T app ruby lib/main.rb
         - >
     - name: git push
       run: |
