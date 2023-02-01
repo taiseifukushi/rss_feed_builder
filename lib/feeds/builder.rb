@@ -34,11 +34,11 @@ module Feeds
         maker.channel.link        = url
         maker.items.do_sort       = true
 
-        items_for_feed.each_with_index do |_item, _index|
+        items_for_feed.each do |_item|
           next if _item.nil?
 
           maker.items.new_item do |item|
-            item.link  = _item[:path] != "failed to extract path." ? "#{ENV['BASE_URL']}#{_item[:path]}" : "failed to extract path."
+            item.link  = _item[:path] != "failed to extract link." ? "#{ENV['BASE_URL']}#{_item[:path]}" : "failed to extract link."
             item.date  = _item[:date]
             item.title = _item[:title]
           end

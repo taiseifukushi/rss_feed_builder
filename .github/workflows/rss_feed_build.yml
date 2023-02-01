@@ -16,10 +16,8 @@ jobs:
         sudo docker-compose up -d
         sudo docker-compose exec app ruby lib/main.rb
         - >
-    - name: run rss_feed_build
+    - name: git push
       run: |
-        apt update
-        apt install git -y
         if [ `git status -z | wc -c` -gt 0 ]; then
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"

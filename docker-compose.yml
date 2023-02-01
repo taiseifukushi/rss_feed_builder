@@ -5,7 +5,6 @@ services:
       context: .
       args:
         RUBY_VERSION: "3.1.0"
-    tty: true
     stdin_open: true
     volumes:
       - .:/app
