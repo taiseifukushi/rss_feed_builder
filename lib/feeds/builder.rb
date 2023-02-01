@@ -37,7 +37,6 @@ module Feeds
           next if _item.nil?
 
           maker.items.new_item do |item|
-            binding.pry
             item.link  = set_item_link(_item[:path])
             item.date  = _item[:date]
             item.title = _item[:title]

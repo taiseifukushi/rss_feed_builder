@@ -7,7 +7,11 @@
 
 ## Usage
 
-```sh
+```bash
 docker compose build
+```
+
+```bash
+docker compose up -d
 docker compose exec app lib/main.rb
 ```
