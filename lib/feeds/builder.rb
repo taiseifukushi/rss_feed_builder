@@ -27,7 +27,6 @@ module Feeds
     def build_xml(items_for_feed)
       RSS::Maker.make("2.0") do |maker|
         xss                       = maker.xml_stylesheets.new_xml_stylesheet
-        xss.href                  = url
         xss.href                  = ENV["REPOSITORY_URL"]
         maker.channel.title       = title
         maker.channel.description = description
@@ -38,7 +37,8 @@ module Feeds
           next if _item.nil?
 
           maker.items.new_item do |item|
-            item.link  = _item[:path] != "failed to extract link." ? "#{ENV['BASE_URL']}#{_item[:path]}" : "failed to extract link."
+            binding.pry
+            item.link  = set_item_link(_item[:path])
             item.date  = _item[:date]
             item.title = _item[:title]
           end
@@ -46,6 +46,12 @@ module Feeds
       rescue StandardError => e
         puts "[#{self.class}] failed to build xml: #{e}"
       end
+    end
+
+    def set_item_link(path_item)
+      return "#{ENV['BASE_URL']}#{path_item}" if path_item != "failed to extract link."
+
+      "failed to extract link."
     end
   end
 end
