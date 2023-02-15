@@ -20,9 +20,13 @@ jobs:
     - name: run rss_feed_build
       run: |
         sudo docker-compose build
-        sudo docker-compose up -d
-        sudo docker-compose exec -T app ruby lib/main.rb
-        - >
+        sudo docker-compose run \
+          -e BASE_URL=${{ env.BASE_URL }} \
+          -e URL=${{ env.URL }} \
+          -e TITLE=${{ env.TITLE }} \
+          -e DESCRIPTION=${{ env.DESCRIPTION }} \
+          -e REPOSITORY_URL=${{ env.REPOSITORY_URL }} \
+          -T app ruby lib/main.rb
     - name: git push
       run: |
         if [ `git status -z | wc -c` -gt 0 ]; then
