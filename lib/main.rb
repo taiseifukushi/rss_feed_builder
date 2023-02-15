@@ -1,3 +1,3 @@
 require_relative "./publish"
 
-p Publish.new.execute
+puts Publish.new.execute

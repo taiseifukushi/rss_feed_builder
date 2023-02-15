@@ -5,6 +5,13 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+env:
+  BASE_URL: ${{ secrets.BASE_URL }}
+  URL: ${{ secrets.URL }}
+  TITLE: ${{ secrets.TITLE }}
+  DESCRIPTION: ${{ secrets.DESCRIPTION }}
+  REPOSITORY_URL: ${{ secrets.REPOSITORY_URL }}
+
 jobs:
   rss_feed_build:
     runs-on: ubuntu-latest
@@ -14,7 +21,7 @@ jobs:
       run: |
         sudo docker-compose build
         sudo docker-compose up -d
-        sudo docker-compose exec app ruby lib/main.rb
+        sudo docker-compose exec -T app ruby lib/main.rb
         - >
     - name: git push
       run: |
