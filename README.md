@@ -12,6 +12,8 @@ docker compose build
 ```
 
 ```bash
-docker compose up -d
+cp .env.sample .env
+# .envを編集する
+docker compose --env-file .env up -d
 docker compose exec app lib/main.rb
 ```
