@@ -2,14 +2,8 @@
 
 source "https://rubygems.org"
 
-# https://github.com/rubocop/rubocop
-gem "rubocop", "~> 1.3.0", require: false
-
-# https://github.com/pry/pry
-gem "pry"
-
-# https://github.com/bkeepers/dotenv
 gem "dotenv"
-
-# https://github.com/sparklemotion/nokogiri
 gem "nokogiri"
+gem "pry"
+gem "rspec"
+gem "rubocop", "~> 1.3.0", require: false
