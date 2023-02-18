@@ -1,6 +1,6 @@
 require "fileutils"
 require "rspec"
-require_relative "../../../publish"
+require_relative "../../lib/publish"
 
 describe Publish do
   let(:file_path) { "./public/rss_feed_test.xml" }
