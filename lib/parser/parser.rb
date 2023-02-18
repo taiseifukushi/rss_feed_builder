@@ -45,7 +45,7 @@ module Parser
     # @param element [Nokogiri::XML::Element]
     # @return [Hash] titleとdateのキーをもったHashを返す
     def extract_title_and_date(element)
-      hash  = {}
+      hash = {}
       _element1 = element.children[1].children[1].children[3].children[0].text
       _element2 = element.children[1].children[1].children[5].children[0].text
 
